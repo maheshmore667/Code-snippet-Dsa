@@ -20,5 +20,11 @@ int main() {
     cout << d.at(0) << endl;
     cout << "size of deque" << d.size();
 
+    d.erase(d.begin(), d.begin()+1);
+     cout << endl;
+     for(int i: d) {
+        cout << i << "," ;
+    }
+
     return 0;
 }
