@@ -30,6 +30,8 @@ int main() {
         cout << i << " ";
     } cout << endl;
 
+    cout << "finding 5 -> " << s.count(5);
+
 
 
 }
