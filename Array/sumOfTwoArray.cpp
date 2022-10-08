@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 
-using naespace std;
+using namespace std;
 
 vector<int> reverse(vector<int> ans){
     int s = 0;
