@@ -11,6 +11,14 @@ class Node {
         this -> data = data;
         this -> next = NULL;
      }
+
+     //Destructor
+     ~Node() {
+        if(this -> next != NULL) {
+            delete next;
+            this -> next = NULL;
+        }
+     }
 };
 
 void insertAtStart(Node* &Head, int data) {
@@ -53,6 +61,30 @@ void inserAtPosition(Node* &Head, int data, int position, Node* &Tail) {
     newNode -> next =  nextNode;
 }
 
+void deleteNodeByPosition(Node* &Head, int position) {
+    if(position == 1) {
+        Node* temp = Head;
+        Head = Head -> next;
+        temp -> next = NULL;
+        delete temp;
+    } else {
+        int cnt = 1;
+        Node* prev;
+        Node * curr = Head;
+
+        while (cnt < position) {
+            prev = curr;
+            curr = curr -> next;
+            cnt++;
+        }
+        Node* temp = curr;
+        prev -> next = curr -> next;
+        temp -> next = NULL;
+        delete temp;
+
+    }
+}
+
 void printLinkedList(Node* &Head) {
     Node* temp;
     temp = Head;
@@ -78,6 +110,9 @@ int main () {
 
     //insert node at specific position
     inserAtPosition(Head, 18, 3, Tail);
+
+    // delete node by position
+    deleteNodeByPosition(Head, 5);
 
     printLinkedList(Head);
 
