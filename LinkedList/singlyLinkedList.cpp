@@ -80,5 +80,9 @@ int main () {
     inserAtPosition(Head, 18, 3, Tail);
 
     printLinkedList(Head);
+
+    cout << endl;
+    cout << "Head : " << Head -> data << endl;
+    cout << "Tail : " << Tail -> data << endl;
     return 0;
 }
