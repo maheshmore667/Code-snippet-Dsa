@@ -61,7 +61,7 @@ void inserAtPosition(Node* &Head, int data, int position, Node* &Tail) {
     newNode -> next =  nextNode;
 }
 
-void deleteNodeByPosition(Node* &Head, int position) {
+void deleteNodeByPosition(Node* &Head, int position, Node* &Tail) {
     if(position == 1) {
         Node* temp = Head;
         Head = Head -> next;
@@ -79,8 +79,14 @@ void deleteNodeByPosition(Node* &Head, int position) {
         }
         Node* temp = curr;
         prev -> next = curr -> next;
-        temp -> next = NULL;
-        delete temp;
+        if( prev -> next == NULL) {
+           Tail = prev;
+        } else {
+            temp -> next = NULL;
+            delete temp;
+        }
+       
+        
 
     }
 }
@@ -112,7 +118,7 @@ int main () {
     inserAtPosition(Head, 18, 3, Tail);
 
     // delete node by position
-    deleteNodeByPosition(Head, 5);
+    deleteNodeByPosition(Head, 1, Tail);
 
     printLinkedList(Head);
 
