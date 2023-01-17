@@ -42,17 +42,30 @@ int getLengthOfLinkedList(Node* &Head) {
 }
 
 void insertAtHead(Node* &Head, int data) {
+
     Node* newNode = new Node(data);
-    newNode -> next = Head;
-    Head -> prev = newNode;
-    Head = newNode;
+
+    if(Head == NULL) {
+        Head = newNode;
+    } else {
+        newNode -> next = Head;
+        Head -> prev = newNode;
+        Head = newNode;
+    }
+    
 }
 
 void insertAtTail(Node* &Tail, int data) {
     Node* newNode = new Node(data);
-    Tail -> next = newNode;
-    newNode -> prev = Tail;
-    Tail = newNode;
+
+    if(Tail == NULL) {
+        Tail = newNode;
+    } else {
+        Tail -> next = newNode;
+        newNode -> prev = Tail;
+        Tail = newNode;
+    }
+    
 }
 
 void inserAtPosition(Node* &Head, Node* &Tail, int data, int position) {
