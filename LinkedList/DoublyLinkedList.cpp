@@ -13,6 +13,13 @@ class Node {
         this -> next = NULL;
     }
 
+    ~Node() {
+        if(next!= NULL) {
+            delete this -> next;
+            this -> next = NULL;
+        }
+    }
+
 };
 
 
@@ -94,6 +101,41 @@ void inserAtPosition(Node* &Head, Node* &Tail, int data, int position) {
 
 }
 
+void deleteNodeByPosition(Node* &Head, Node* &Tail, int position) {
+    //deletion at head
+    if(position == 1) {
+        Node* temp = Head;
+        temp -> next -> prev = NULL;
+        Head = temp -> next;
+        temp -> next = NULL;
+        delete temp;
+    } else {
+        // deletion at remaining positions of linked list
+        Node* currentNode = Head;
+        Node* prev;
+        int count = 1;
+
+        while(count < position) {
+            prev = currentNode;
+            currentNode = currentNode -> next;
+            count++;
+        }
+
+        prev -> next = currentNode -> next;
+        currentNode -> prev = NULL;
+        if(currentNode -> next != NULL) {
+            currentNode -> next = NULL;
+            currentNode -> prev = prev;
+        } else {
+            Tail = prev;
+        }
+
+        delete currentNode;
+
+    }
+
+}
+
 int main() {
 
     Node* newNode = new Node(10) ;
@@ -108,7 +150,10 @@ int main() {
     insertAtTail(Tail, 12);
     insertAtTail(Tail, 17);
     inserAtPosition(Head, Tail, 20, 1);
+    deleteNodeByPosition(Head, Tail, 8);
     printLinkedList(Head);
-    cout << "Length of Linked List : " << getLengthOfLinkedList(Head);
+    cout << "Length of Linked List : " << getLengthOfLinkedList(Head) << endl;
+    cout << "Head: " << Head -> data << endl;
+    cout << "Tail : " << Tail -> data << endl;
     return 0;
 }
