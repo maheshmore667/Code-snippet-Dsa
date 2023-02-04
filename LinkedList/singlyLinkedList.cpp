@@ -116,9 +116,9 @@ bool isLoopPresent(Node* &Head) {
     return false;
 }
 
-bool floydCycleDetection(Node* &Head) {
+Node* floydCycleDetection(Node* &Head) {
     if(Head == NULL) {
-        return false;
+        return NULL;
     }
     Node* fast = Head;
     Node* slow = Head;
@@ -132,12 +132,41 @@ bool floydCycleDetection(Node* &Head) {
 
         if(fast == slow) {
             //cycle present
-            return true;
+            return fast;
         }
     }
     //cycle absent
-    return false;
+    return NULL;
 }
+
+Node* getStartingNode(Node* Head) {
+    if(Head == NULL) {
+        return NULL;
+    }
+    Node* intersectingNode = floydCycleDetection(Head);
+    Node* slow = Head;
+    while(slow != intersectingNode) {
+        slow = slow -> next;
+        intersectingNode = intersectingNode -> next;
+    }
+
+    return slow;
+
+}
+
+void removeLoop(Node* Head) {
+    if(Head == NULL) {
+        return;
+    }
+    Node* startingNode = getStartingNode(Head);
+    Node* temp = startingNode;
+    while(temp -> next != startingNode) {
+        temp = temp -> next;
+    }
+    temp -> next = NULL;
+
+}
+
 int main () {
     Node* newNode = new Node(10);
     Node* Head = newNode;
