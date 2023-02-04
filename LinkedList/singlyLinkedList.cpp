@@ -1,4 +1,5 @@
 #include<iostream>
+#include<map>
 
 using namespace std;
 
@@ -100,6 +101,43 @@ void printLinkedList(Node* &Head) {
     }
 }
 
+bool isLoopPresent(Node* &Head) {
+    if(Head == NULL) {
+        return false;
+    }
+    Node* temp = Head;
+    map<Node*, bool> visited;
+    if(temp != NULL) {
+        if(visited[temp] == true) {
+            return true;
+        } 
+        visited[temp] = true;
+    }
+    return false;
+}
+
+bool floydCycleDetection(Node* &Head) {
+    if(Head == NULL) {
+        return false;
+    }
+    Node* fast = Head;
+    Node* slow = Head;
+
+    while(fast != NULL || slow != NULL) {
+        fast = fast -> next;
+        if(fast -> next != NULL) {
+            fast = fast -> next;
+        }
+        slow = slow -> next;
+
+        if(fast == slow) {
+            //cycle present
+            return true;
+        }
+    }
+    //cycle absent
+    return false;
+}
 int main () {
     Node* newNode = new Node(10);
     Node* Head = newNode;
@@ -125,5 +163,6 @@ int main () {
     cout << endl;
     cout << "Head : " << Head -> data << endl;
     cout << "Tail : " << Tail -> data << endl;
+    cout << "Is loop present ? " << isLoopPresent(Head);
     return 0;
 }
