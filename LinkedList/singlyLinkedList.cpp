@@ -107,11 +107,12 @@ bool isLoopPresent(Node* &Head) {
     }
     Node* temp = Head;
     map<Node*, bool> visited;
-    if(temp != NULL) {
+    while(temp != NULL) {
         if(visited[temp] == true) {
             return true;
         } 
         visited[temp] = true;
+        temp = temp -> next
     }
     return false;
 }
