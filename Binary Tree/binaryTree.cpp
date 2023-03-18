@@ -36,6 +36,34 @@ Node* createBinaryTree(Node* root) {
 
 }
 
+void inorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+    inorder(root -> left);
+    cout <<root -> data << " ";
+     inorder(root -> right);
+}
+
+void postorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+    postorder(root -> left);
+    postorder(root -> right);
+    cout <<root -> data << " ";
+    
+}
+
+void preorder(Node* root) {
+    if(root == NULL) {
+        return;
+    }
+    cout <<root -> data << " ";
+    preorder(root -> left);
+    preorder(root -> right);
+}
+
 void levelOrderTraversal(Node* root) {
     queue<Node*> q;
     q.push(root);
@@ -74,7 +102,7 @@ void reverseOrderTraversal(Node* root) {
     queue<Node*> q;
     stack<int> ans;
 
-    q.push(root);
+    q.push(root);                   
     while(!q.empty()) {
         Node* temp = q.front();
         ans.push(temp -> data);
@@ -101,6 +129,16 @@ int main() {
     levelOrderTraversal(root);
     cout << "Reverse Level Order Traversal" << " " << endl;
     reverseOrderTraversal(root);
+
+    cout << "inorder traversal is : " << endl;
+    inorder(root);
+    cout << endl;
+    cout << "preorder traversal is : " << endl;
+    preorder(root);
+    cout << endl;
+    cout << "postorder traversal is : " << endl;
+    postorder(root);
+
 
     //1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     return 0;
